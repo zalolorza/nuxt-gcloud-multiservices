@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"npm run dev:default\" \"npm run dev:service1\" \"npm run dev:service2\" \"npm run dev:api\"",
-    "dev:default": "nuxt --config-file services/default/nuxt.local.js -p=3001",
+    "dev:default": "nuxt --config-file services/default/nuxt.local.js -p=3000",
     "dev:service1": "nuxt --config-file services/service1/nuxt.local.js -p=3001",
     "dev:service2": "nuxt --config-file services/service2/nuxt.local.js -p=3002",
     "dev:api": "PORT=5000 nodemon services/api/server.js",
