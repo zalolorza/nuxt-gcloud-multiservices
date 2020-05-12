@@ -3,3 +3,5 @@ dispatch:
   service: service2
 - url: "*/service1*"
   service: service1
+- url: "*/api*"
+  service: api

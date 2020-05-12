@@ -13,6 +13,7 @@ $ npm run dev
 ## default service at localhost:3000
 ## service1 at localhost:3001/service1
 ## service2 at localhost:3002/service2
+## api at localhost:5000/api
 
 # serve one service
 $ npm run dev:{service}
