@@ -1,0 +1,35 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "My pioneering Nuxt.js project",
+  "author": "Zalo",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:default\" \"npm run dev:service1\" \"npm run dev:service2\"",
+    "dev:default": "nuxt --config-file services/default/nuxt.local.js -p=3001",
+    "dev:service1": "nuxt --config-file services/service1/nuxt.local.js -p=3001",
+    "dev:service2": "nuxt --config-file services/service2/nuxt.local.js -p=3002",
+
+    "build:default": "nuxt build --config-file services/default/nuxt.local.js",
+    "build:service1": "nuxt build --config-file services/service1/nuxt.local.js",
+    "build:service2": "nuxt build --config-file services/service2/nuxt.local.js",
+
+    "deploy": "npm run deploy:default && npm run deploy:service1 && npm run deploy:service2 && npm run deploy:dispatch",
+    "deploy:default": "npm run build:default && cpx package.json services/default && gcloud app deploy --project coco-player-test services/default/app.yaml --quiet && rm services/default/package.json",
+    "deploy:service1": "npm run build:service1 && cpx package.json services/service1 && gcloud app deploy --project coco-player-test services/service1/app.yaml --quiet && rm services/service1/package.json",
+    "deploy:service2": "npm run build:service2 && cpx package.json services/service2 && gcloud app deploy --project coco-player-test services/service2/app.yaml --quiet && rm services/service2/package.json",
+    "deploy:dispatch": "gcloud app deploy services/dispatch.yaml --project coco-player-test --quiet",
+
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "concurrently": "^5.2.0"
+  }
+}
