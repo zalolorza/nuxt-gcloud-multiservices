@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Service package json
+package.json
