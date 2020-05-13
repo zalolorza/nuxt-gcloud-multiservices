@@ -10,11 +10,10 @@
 </template>
 
 <script>
-import { api } from '~~/sdk'
 
 export default {
-  async asyncData(){
-    const { data } = await api.get('test')
+  async asyncData({app}){
+    const { data } = await app.$api.get('test')
     return {
       test: data
     }

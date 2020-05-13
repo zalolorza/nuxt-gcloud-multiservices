@@ -89,5 +89,7 @@ sw.*
 # Vim swap files
 *.swp
 
-# Service package json
+# Service temporary files
 package.json
+package-lock.json
+nuxt.global.js
