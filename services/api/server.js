@@ -1,4 +1,6 @@
 const app = require('express')();
+var cors = require('cors')
+app.use(cors())
 
 const BASE = process.env.ENV === 'production' ? '':'/api'
 

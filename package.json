@@ -5,7 +5,7 @@
   "author": "Zalo",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm run dev:default\" \"npm run dev:service1\" \"npm run dev:service2\" \"npm run dev:api\"",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:default\" \"npm run dev:service1\" \"npm run dev:service2\"",
     "dev:default": "nuxt --config-file services/default/nuxt.local.js -p=3000",
     "dev:service1": "nuxt --config-file services/service1/nuxt.local.js -p=3001",
     "dev:service2": "nuxt --config-file services/service2/nuxt.local.js -p=3002",
@@ -25,6 +25,8 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "nodemon": "^2.0.3",
     "nuxt": "^2.0.0"
