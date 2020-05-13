@@ -17,10 +17,10 @@ $ npm run dev
 #     - service2 at localhost:3002/service2
 #     - api at localhost:5000/api
 
-# Serve nuxt service
+# Serve only nuxt service
 $ SERVICE={serviceName} PORT={servicePort} npm run dev:service
 
-# Serve api
+# Serve only api
 $ npm run dev:api
 
 # Deploy all: services + api + routing (dispatch)
