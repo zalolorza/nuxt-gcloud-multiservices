@@ -1,6 +1,13 @@
-# Nuxt Gcloud Multiple services
+# Nuxt multiple Google App Engine services
 
 Nuxt implementation for Google App Engine multiple services. 
+
+## Demo
+
+- Default service: https://nuxt-services.ew.r.appspot.com
+- Secondary service 1: https://nuxt-services.ew.r.appspot.com/service1
+- Secondary service 2: https://nuxt-services.ew.r.appspot.com/service2
+- REST API: https://nuxt-services.ew.r.appspot.com/api
 
 
 ## Set your Google Cloud project
@@ -9,13 +16,6 @@ Nuxt implementation for Google App Engine multiple services.
 
 2. Change the project name on `package.json` line 18: replace `nuxt-services` for your gcloud project ID
 
-
-## Demo
-
-- Default service: https://nuxt-services.ew.r.appspot.com
-- Secondary service 1: https://nuxt-services.ew.r.appspot.com/service1
-- Secondary service 2: https://nuxt-services.ew.r.appspot.com/service2
-- REST API: https://nuxt-services.ew.r.appspot.com/api
 
 ## Build Setup
 
