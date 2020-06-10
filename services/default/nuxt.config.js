@@ -1,12 +1,13 @@
 
 const merge = require('deepmerge')
-const root = (process.env.ENV === 'dev' || process.env.ENV === 'build') ? '../..' : './'
+const root = (process.env.ENV === 'dev' || process.env.ENV === 'build') ? '../..' : '.'
 const globalConfig = require(`${root}/nuxt.global`).default
 
 const base = '/'
 
 export default merge(globalConfig, {
   srcDir: __dirname,
+  buildDir: process.env.ENV === 'dev' ? '.nuxt/default' : '.nuxt',
   router: {
     base
   },

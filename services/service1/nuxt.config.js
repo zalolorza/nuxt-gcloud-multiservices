@@ -1,5 +1,5 @@
 const merge = require('deepmerge')
-const root = (process.env.ENV === 'dev' || process.env.ENV === 'build') ? '../..' : './'
+const root = (process.env.ENV === 'dev' || process.env.ENV === 'build') ? '../..' : '.'
 const globalConfig = require(`${root}/nuxt.global`).default
 
 const base = '/service1'
