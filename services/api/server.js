@@ -2,7 +2,7 @@ const app = require('express')();
 var cors = require('cors')
 app.use(cors())
 
-const BASE = process.env.ENV === 'production' ? '':'/api'
+const BASE = '/api'
 
 app.use(`${BASE}/`, require("./index"));
 app.use(`${BASE}/test/`, require("./test/index"));

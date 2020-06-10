@@ -3,7 +3,7 @@
     <div>
       <logo />
       <h1 class="title">
-        Test Gcloud
+        Main service
       </h1>
       <h2 class="subtitle">
         My pioneering Nuxt.js project
@@ -23,11 +23,6 @@
         >
           GitHub
         </a>
-         <nuxt-link
-          to="/zalo"
-        >
-          Zalo
-        </nuxt-link>
       </div>
     </div>
   </div>

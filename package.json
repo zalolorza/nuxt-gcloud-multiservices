@@ -5,16 +5,19 @@
   "author": "Zalo",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"PORT=5000 npm run dev:api\" \"SERVICE=default PORT=3000 npm run dev:service\" \"SERVICE=service1 PORT=3001 npm run dev:service\" \"SERVICE=service2 PORT=3002 npm run dev:service\"",
-    "dev:service": "ENV=dev nuxt --config-file services/${SERVICE}/nuxt.local.js -p=${PORT}",
-    "dev:api": "ENV=dev nodemon services/api/server.js",
-    "build": "ENV=build nuxt build --config-file services/${SERVICE}/nuxt.local.js",
+    "dev": "ENV=dev concurrently \"npm run dev:api\" \"SERVICE=default PORT=3000 npm run dev:service\" \"SERVICE=service1 PORT=3001 npm run dev:service\" \"SERVICE=service2 PORT=3002 npm run dev:service\"",
+    "dev:service": "kill-port ${PORT} && ENV=dev nuxt --config-file services/${SERVICE}/nuxt.config.js -p=${PORT}",
+    "dev:api": "kill-port 5000 && PORT=5000 ENV=dev nodemon services/api/server.js",
+    "build:service": "ENV=build nuxt build --config-file services/${SERVICE}/nuxt.config.js",
     "deploy": "SERVICE=default npm run deploy:service && SERVICE=service1 npm run deploy:service && SERVICE=service2 npm run deploy:service && npm run deploy:api && npm run deploy:dispatch",
-    "deploy:service": "npm run build && cpx nuxt.global.js services/${SERVICE} && cpx package.json services/${SERVICE} && YAML=services/${SERVICE}/app.yaml npm run deploy:gcloud && rm services/${SERVICE}/package.json && rm services/${SERVICE}/nuxt.global.js",
-    "deploy:api": "YAML=services/api/app.yaml npm run deploy:gcloud",
+    "deploy:service": "npm run deploy:service:prep && YAML=services/${SERVICE}/app.yaml npm run deploy:gcloud && npm run deploy:service:cleanup",
+    "deploy:service:prep": "rm -f -r .nuxt services/${SERVICE}/.nuxt && npm run build:service && mv .nuxt services/${SERVICE} && cpx nuxt.global.js services/${SERVICE} && cpx package.json services/${SERVICE}",
+    "deploy:service:cleanup": "rm -f services/${SERVICE}/package.json services/${SERVICE}/nuxt.global.js && rm -f -r services/${SERVICE}/.nuxt",
+    "deploy:api": "cpx config.json services/api && YAML=services/api/app.yaml npm run deploy:gcloud && rm -f services/api/config.json",
     "deploy:dispatch": "YAML=services/dispatch.yaml npm run deploy:gcloud",
     "deploy:gcloud": "gcloud app deploy --project nuxt-services ${YAML} --quiet",
-    "start": "nuxt start",
+    "start": "nuxt-start",
+    "start:service": "npm run build:service && cpx nuxt.global.js services/${SERVICE} && cpx package.json services/${SERVICE} && cd services/${SERVICE} && npm i && npm run start && cd -",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
@@ -27,6 +30,7 @@
   },
   "devDependencies": {
     "cpx": "^1.5.0",
-    "concurrently": "^5.2.0"
+    "concurrently": "^5.2.0",
+    "kill-port": "^1.6.0"
   }
 }

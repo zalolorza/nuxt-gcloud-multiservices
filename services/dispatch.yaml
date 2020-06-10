@@ -1,8 +1,12 @@
 dispatch:
-- url: "*/service2*"
-  service: service2
-- url: "*/service1*"
+- url: "*/service1/*"
   service: service1
+- url: "*/service1"
+  service: service1
+- url: "*/service2/*"
+  service: service2
+- url: "*/service2"
+  service: service2
 - url: "*/api/*"
   service: api
 - url: "*/api"

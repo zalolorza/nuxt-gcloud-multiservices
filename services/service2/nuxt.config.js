@@ -6,6 +6,7 @@ const base = '/service2'
 
 export default merge(globalConfig, {
   srcDir: __dirname,
+  buildDir: process.env.ENV === 'dev' ? '.nuxt/service2' : '.nuxt',
   router: {
     base
   },
