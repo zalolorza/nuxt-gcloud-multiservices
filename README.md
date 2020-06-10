@@ -10,7 +10,7 @@ Nuxt implementation for Google App Engine multiple services.
 - REST API: https://nuxt-services.ew.r.appspot.com/api
 
 
-## Set your Google Cloud project
+## Set up your Google Cloud project
 
 1. Create a new Google Cloud Project and enable App Engine: https://cloud.google.com/appengine/docs/standard/nodejs/building-app/creating-project
 
